@@ -1,0 +1,26 @@
+{
+  "name": "prspctv",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@mapbox/polyline": "^0.2.0",
+    "mapbox-gl": "^0.41.0",
+    "qs": "^6.5.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-leaflet": "^1.7.2",
+    "react-mapbox-gl": "^2.7.0",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.0.16",
+    "react-stack-grid": "^0.6.0",
+    "semantic-ui-css": "^2.2.12",
+    "semantic-ui-react": "^0.75.1",
+    "shitty-qs": "^1.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

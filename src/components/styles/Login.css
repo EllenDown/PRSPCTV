@@ -1,0 +1,58 @@
+.bodyLogin {
+  display: block;
+  margin-left: 50px;
+  padding: 0;
+  height: 110vh;
+}
+
+.topLogin {
+  background-color: black;
+  margin: 0;
+  padding: 30px;
+}
+
+.bottomLogin {
+  background-color: white;
+  margin: 0;
+
+}
+
+.logoContainer {
+  width: 50%;
+  margin: auto;
+}
+
+.logo {
+  margin-left: 50px;
+  height: 350px;
+  padding: 30px;
+}
+
+.quoteText {
+  font-size: 2.2rem;
+  letter-spacing: 1.4rem;
+  text-align: justify right;
+  line-height: 3rem;
+  color: white;
+}
+
+.aboutText {
+  margin: auto;
+  width: 40%;
+  background-color: white;
+  opacity: .7;
+}
+
+.aboutText {
+  font-size: 1.4rem;
+  text-align: center;
+  line-height: 2rem;
+  color: black;
+}
+
+.loginContainer {
+  padding: 30px;
+  text-align: center;
+  display: block;
+  margin: auto;
+}
