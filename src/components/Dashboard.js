@@ -142,17 +142,16 @@ export default class AthleteDashboard extends Component {
 
   renderIcon = (type) => {
     if (type === 'Run') {
-      return "child"
+      return " directions_run "
     } else if (type === 'Ride') {
-      return "bicycle"
-    } else if (type === 'Swim') {
-      return 'fa fa-swim fa-2x'
+      return " directions_bike "
     }
   }
 
   renderDistance = (distance) => {
     if (distance) {
-      var miles = distance * 0.000621371
+      var meterToMile = distance * 0.000621371
+      var miles = meterToMile.toFixed(2)
       return miles + " miles"
   }
 }
@@ -188,39 +187,6 @@ export default class AthleteDashboard extends Component {
     }
   }
 
-  // <Grid.Column width={12} className='gridImages'>
-  //   <Grid columns='equal'>
-  //     <Grid.Row column={4}>
-  //       <Grid.Column>
-  //         <Image  className='gridImage1'src={apex1}/>
-  //       </Grid.Column>
-  //       <Grid.Column >
-  //         <Image className='gridImage va1'src={apex2}/>
-  //       </Grid.Column>
-  //       <Grid.Column>
-  //         <Image className='gridImage1' src={apex3}/>
-  //       </Grid.Column>
-  //       <Grid.Column className='gridImage' >
-  //         <Image className='gridImage va1'src={apex4}/>
-  //       </Grid.Column>
-  //     </Grid.Row>
-  //     <Grid.Row column={4}>
-  //       <Grid.Column >
-  //         <Image className='gridImage' src={apex5}/>
-  //       </Grid.Column>
-  //       <Grid.Column >
-  //         <Image className='gridImage1' src={apex6}/>
-  //       </Grid.Column>
-  //       <Grid.Column className='gridImage' >
-  //         <Image  className='gridImage' src={apex7}/>
-  //       </Grid.Column>
-  //       <Grid.Column >
-  //         <Image  className='gridImage1' src={apex8}/>
-  //       </Grid.Column>
-  //     </Grid.Row>
-  //   </Grid>
-  // </Grid.Column>
-
   render() {
     console.log(this.state.followerActivities);
     return (
@@ -248,7 +214,7 @@ export default class AthleteDashboard extends Component {
                     <Feed className="activity-feed">
                       <Feed.Event key={activity.id}>
                         <Feed.Label>
-                          <Icon name={this.renderIcon(activity.type)}/>
+                          <i class="material-icons md-36">{this.renderIcon(activity.type)}</i>
                         </Feed.Label>
                         <Feed.Content>
                           <Feed.Date>{this.renderDate(activity.start_date)}</Feed.Date>
@@ -260,13 +226,13 @@ export default class AthleteDashboard extends Component {
                     </Feed>
                   )
                 })
-}
+              }
               </div>
             </Grid.Column>
             <Grid.Column width={9}>
               <img className='footerImage' src={mapBGImg}/>
             </Grid.Column>
-            <Grid.Column width={3} className="column1">
+            <Grid.Column width={3} className="column2">
               <div className='follow-feed'>
                 {this.state.followerActivities.map(followerActivity => {
                   return (
@@ -276,7 +242,7 @@ export default class AthleteDashboard extends Component {
                           <Image className='followerPhoto' src={followerActivity.photo}/>
                         </div>
                         <Feed.Label>
-                          <Icon name={this.renderIcon(followerActivity.type)}/>
+                          <i class="material-icons md-36">{this.renderIcon(followerActivity.type)}</i>
                         </Feed.Label>
                         <Feed.Content>
                           <Feed.Date>{this.renderDate(followerActivity.start_date)}</Feed.Date>
