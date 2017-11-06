@@ -15,7 +15,7 @@ import PrspctvLogo from '../assets/PrspctvLogo.png'
 import pLogoBlue from '../assets/pLogoBlue.png'
 
 const clientId = "20906"
-const redirectUrl = "https://localhost:3000/afterauth"
+const redirectUrl = "http://localhost:3000/afterauth"
 
 export default class Login extends Component {
   constructor() {
@@ -25,29 +25,6 @@ export default class Login extends Component {
     }
   }
 
-  handleShow = () => this.setState({active: true})
-
-  componentDidMount() {
-    console.log(window.location.hash);
-    window.addEventListener('hashchange', (event) => this.handleLinkingUrl(), false)
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('url', (event) => this.handleLinkingUrl(event));
-  }
-
-  handleLinkingUrl() {
-    if (window.location.query > 3) {
-      let hash = window.location.hash
-      console.log(hash);
-      var query = shittyQs(hash)
-      console.log(query);
-      if (query.code) {
-        this.setState({code: query.code})
-        localStorage.setItem('code', query.code)
-      }
-    }
-  }
 
   render() {
     const {active} = this.state

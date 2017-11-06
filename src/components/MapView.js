@@ -61,8 +61,8 @@ export default class MapView extends Component {
       })
       this.setState({coordinates: coordinates})
       const map = new mapboxgl.Map({container: this.mapContainer, style: 'mapbox://styles/ellendown/cj9n4vi9s360x2rlp0y18otvl', zoom: 0});
-      map.jumpTo({'center': this.state.coordinates[0], 'zoom': 20});
-      map.setPitch(130);
+      map.jumpTo({'center': this.state.coordinates[0], 'zoom': 22});
+      map.setPitch(100);
       // this.panToRoute()
       //
       let i = 0;
@@ -75,7 +75,7 @@ export default class MapView extends Component {
         } else {
           window.clearInterval(timer);
         }
-      }, 1000);
+      }, 1500);
     })
   }
 

@@ -1,8 +1,13 @@
 .bodyDash {
   background-color: white;
-  padding: 20px;
   height: 100vh;
   display: block;
+}
+
+.headerContainer {
+  width: 100%;
+  border-bottom: thick solid black;
+  /*margin-bottom: 20px;*/
 }
 
 .logoImage {
@@ -11,14 +16,22 @@
 }
 
 .topButterfly {
-  height: 100px;
-  margin: auto;
+  height: 80px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.column1 {
+  margin-left: 30px;
+  border-right: thick solid black;
+  padding: 10px;
 }
 
 .image-container {
   vertical-align: middle;
   width: 100%;
   padding: .5rem;
+  margin: auto;
 }
 
 .dash-image {
@@ -26,7 +39,8 @@
 }
 
 .name-container {
-  width: 20%;
+  /*width: 70%;*/
+  margin-bottom: 20px;
 }
 
 .dash-name {
@@ -34,6 +48,8 @@
   text-align: right;
   padding-top: 1rem;
   text-transform: uppercase;
+  letter-spacing: .5rem;
+
 }
 
 .activity-feed {
@@ -41,7 +57,27 @@
   padding-top: 1rem;
 }
 
+div.row>Image {
+  margin-top: 20px;
+}
+
+.va1 {
+  vertical-align: bottom;
+}
+
 .gridImage {
-  height: 100px;
-  width: 100px;
+  height: 200px;
+  width: 300px;
+}
+
+.gridImage1 {
+  height: 300px;
+  width: 300px;
+
+}
+
+.footerImage {
+  height: 600px;
+  width: 100%;
+  margin-top: 20px;
 }
