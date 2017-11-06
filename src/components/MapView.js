@@ -54,51 +54,34 @@ export default class MapView extends Component {
         'Authorization': 'Bearer ' + '37338812d9b76451f38f8c296616f94149881d15'
       }
     }
-    let result = await fetch(requestUrl + 'activities/' + '1252340841' + '?include_all_efforts=false', options)
-    .then((data) => data.json())
-    .then((responseData) => {
+    let result = await fetch(requestUrl + 'activities/' + '1252340841' + '?include_all_efforts=false', options).then((data) => data.json()).then((responseData) => {
       let points = Polyline.decode(responseData.map.summary_polyline)
       let coordinates = points.map((point, index) => {
-        return [point[1],  point[0]]
+        return [point[1], point[0]]
       })
       this.setState({coordinates: coordinates})
-      const map = new mapboxgl.Map({container: this.mapContainer, style: 'mapbox://styles/ellendown/cj9kd47io0l442rlp7z6n8oz3', zoom: 0});
-      map.jumpTo({'center': this.state.coordinates[0], 'zoom': 18});
-      map.setPitch(70);
+      const map = new mapboxgl.Map({container: this.mapContainer, style: 'mapbox://styles/ellendown/cj9n4vi9s360x2rlp0y18otvl', zoom: 0});
+      map.jumpTo({'center': this.state.coordinates[0], 'zoom': 20});
+      map.setPitch(130);
       // this.panToRoute()
       //
       let i = 0;
       let timer = window.setInterval(function() {
-        console.log('ho', coordinates);
-
         if (i < coordinates.length) {
-        coordinates.push(coordinates[i]);
+          coordinates.push(coordinates[i]);
           // map.getSource('trace').setData(coord);
-        map.panTo(coordinates[i]);
-        i++;
+          map.panTo(coordinates[i]);
+          i++;
         } else {
           window.clearInterval(timer);
         }
-      }, 10);
-      })
+      }, 1000);
+    })
   }
-
-
-  // panToRoute() {
-  //   var i = 0;
-  //   if (i < coordinates.length) {
-  //   coordinates.push(coordinates[i]);
-  //     // map.getSource('trace').setData(coord);
-  //   map.panTo(coordinates[i]);
-  //   i++;
-  //
-  // }
-
 
   render() {
 
     const coordinates = this.state.coordinates
-
 
     return (
       <div>

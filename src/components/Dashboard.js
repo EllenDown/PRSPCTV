@@ -1,7 +1,18 @@
 import React, {Component} from 'react';
 import {Feed, Icon, Grid, Image} from 'semantic-ui-react'
+import StackGrid from "react-stack-grid";
 
 import './styles/Dashboard.css'
+
+import butterflyBlue from '../assets/butterflyBlue.png'
+import apex1 from '../assets/apex1.png'
+import apex2 from '../assets/apex2.png'
+import apex3 from '../assets/apex3.png'
+import apex4 from '../assets/apex4.png'
+import apex5 from '../assets/apex5.png'
+import apex6 from '../assets/apex6.png'
+import apex7 from '../assets/apex7.png'
+import apex8 from '../assets/apex8.png'
 
 const clientId = "20906"
 const clientSecret = "a54ffe91af74c2e3fefcd3fe794159a1c120f136"
@@ -142,16 +153,25 @@ export default class AthleteDashboard extends Component {
   render() {
     return (
       <div className="bodyDash">
+        <div className="logoImage">
+          <img className="topButterfly" src={butterflyBlue}/>
+        </div>
         <Grid>
-          <Grid.Column className='first' width={5}>
+          <Grid.Column>
             <div className='dash-header'>
               <div className='image-container'>
                 <img className='dash-image' src={this.state.athletePhoto}/>
               </div>
               <div className='name-container'>
-                <div className='dash-name'>{this.state.athleteFirstname} {this.state.athleteLastname}</div>
+                <div className='dash-name'>{this.state.athleteFirstname}</div>
+              </div>
+              <div className='name-container'>
+                <div className='dash-name'>{this.state.athleteLastname}</div>
               </div>
             </div>
+          </Grid.Column>
+          <Grid.Column>
+
             <div className='dash-feed'>
               {this.state.activities.map(activity => {
                 return (
@@ -171,20 +191,38 @@ export default class AthleteDashboard extends Component {
                 )
               })
             }
-          </div>
+            </div>
           </Grid.Column>
-          <Grid.Column className='one' width={1}>
-          </Grid.Column>
-          <Grid.Column className='two' width={2}>
-          </Grid.Column>
-          <Grid.Column  className='three' width={3}>
-          </Grid.Column>
-          <Grid.Column  className='four' width={4}>
-          </Grid.Column>
-          <Grid.Column  className='five' width={5}>
-          </Grid.Column>
-        </Grid>
-      </div>
-    )
-  }
+          <Grid.Row columns={4}>
+            <Grid.Column  className='gridImage' >
+              <img src={apex1} />
+            </Grid.Column>
+            <Grid.Column  className='gridImage' >
+              <img src={apex2} />
+            </Grid.Column>
+            <Grid.Column  className='gridImage' >
+              <img src={apex3} />
+            </Grid.Column>
+            <Grid.Column className='gridImage' >
+              <img src={apex4} />
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row columns={4}>
+            <Grid.Column  className='gridImage' >
+              <img src={apex5} />
+            </Grid.Column>
+            <Grid.Column  className='gridImage'>
+              <img src={apex6} />
+            </Grid.Column>
+            <Grid.Column className='gridImage'>
+              <img src={apex7} />
+            </Grid.Column>
+            <Grid.Column className='gridImage'>
+              <img src={apex8} />
+            </Grid.Column>
+          </Grid.Row>
+      </Grid>
+    </div>
+  )
+}
 }

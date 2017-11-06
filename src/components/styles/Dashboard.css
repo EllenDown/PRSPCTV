@@ -1,32 +1,39 @@
 .bodyDash {
   background-color: white;
-  padding: 10px;
+  padding: 20px;
   height: 100vh;
+  display: block;
+}
+
+.logoImage {
+  width: 10%;
+  margin: auto;
+}
+
+.topButterfly {
+  height: 100px;
+  margin: auto;
 }
 
 .image-container {
-  margin: auto;
-  width: 80%;
-  border: solid black;
-  border-radius: 50%;
+  vertical-align: middle;
+  width: 100%;
   padding: .5rem;
 }
 
 .dash-image {
-  border-radius: 50%;
+  height: 200px;
 }
 
 .name-container {
-  margin: auto;
-  width: 80%;
-  border-bottom: solid black;
-  margin-bottom: 30px;
+  width: 20%;
 }
 
 .dash-name {
-  font-size: 1.4rem;
-  text-align: center;
-  padding: 1rem;
+  font-size: 1.8rem;
+  text-align: right;
+  padding-top: 1rem;
+  text-transform: uppercase;
 }
 
 .activity-feed {
@@ -34,41 +41,7 @@
   padding-top: 1rem;
 }
 
-/*.one {
-  background-image: url(../../assets/apex1.jpeg);
-  background-position: center top;
-  height: 60%;
-  height: 100vh;
-
+.gridImage {
+  height: 100px;
+  width: 100px;
 }
-
-.two {
-  background-image: url(../../assets/apex2.jpg);
-  background-position: center top;
-  height: 100vh;
-
-}
-
-.three {
-  background-image: url(../../assets/apex3.jpg);
-  background-position: right top;
-  height: 100vh;
-
-}
-
-.four {
-  background-image: url(../../assets/apex4.jpg);
-  background-position: center top;
-  height: 100vh;
-
-}
-
-.five {
-  background-image: url(../../assets/apex5.jpg);
-  background-position: left center;
-  height: 100vh;
-
-}
-.first {
-  background-color: white;
-}*/

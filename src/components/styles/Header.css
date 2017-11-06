@@ -1,0 +1,14 @@
+/*img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: top;
+}*/
+
+.header h1 {
+  position: fixed;
+  top: 30px;
+  left: 30px;
+  z-index: 1000;
+  width: 180px;
+  margin: 0;
+}
