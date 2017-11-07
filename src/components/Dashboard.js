@@ -36,7 +36,6 @@ export default class AthleteDashboard extends Component {
   }
 
   componentDidMount() {
-    console.log(this.state);
     this._getAthleteInfo()
     this._getFollowerInfo()
   }
@@ -50,6 +49,7 @@ export default class AthleteDashboard extends Component {
   }
 
   async saveActivityId(id, value) {
+    console.log('are we getting here');
     try {
       await localStorage.setItem(id, value);
     } catch (error) {
@@ -113,7 +113,6 @@ export default class AthleteDashboard extends Component {
     }
     return fetch(requestUrl + 'activities/following', options).then((data) => data.json()).then((responseData) => {
       let listFollowers = responseData.map(followerActvitity => {
-        // console.log(responseData.id);
         return {
           id: followerActvitity.id,
           athleteName1: followerActvitity.athlete.firstname,
@@ -133,10 +132,12 @@ export default class AthleteDashboard extends Component {
   }
 
 
-  _navToMapView = (id) => {
-    let stringId = JSON.stringify(id)
-    this.setState({selectedActvity: id})
-    this.saveActivityId('activityId', stringId)
+  _toMapView(id, e) {
+    this.saveActivityId('activityId', id)
+    console.log(id);
+  //   // let stringId = JSON.stringify(id)
+  //   // this.setState({selectedActvity: id})
+  //   // this.saveActivityId('activityId', stringId)
     this.props.history.push('/mapview')
   }
 
@@ -188,7 +189,6 @@ export default class AthleteDashboard extends Component {
   }
 
   render() {
-    console.log(this.state.followerActivities);
     return (
       <div className="bodyDash">
         <div className="headerContainer">
@@ -211,7 +211,7 @@ export default class AthleteDashboard extends Component {
               <div className='dash-feed'>
                 {this.state.activities.map(activity => {
                   return (
-                    <Feed className="activity-feed">
+                    <Feed className="activity-feed" onClick={(e) => this._toMapView(activity.id)}>
                       <Feed.Event key={activity.id}>
                         <Feed.Label>
                           <i class="material-icons md-36">{this.renderIcon(activity.type)}</i>
@@ -236,7 +236,7 @@ export default class AthleteDashboard extends Component {
               <div className='follow-feed'>
                 {this.state.followerActivities.map(followerActivity => {
                   return (
-                    <Feed className="activity-feed">
+                    <Feed className="activity-feed" onClick={(e) => this._toMapView(followerActivity.id)}>
                       <Feed.Event key={followerActivity.id}>
                         <div>
                           <Image className='followerPhoto' src={followerActivity.photo}/>

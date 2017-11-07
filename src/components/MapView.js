@@ -23,8 +23,8 @@ export default class MapView extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      access_token: null,
-      activityId: null,
+      access_token: localStorage.getItem('access_token'),
+      activityId: localStorage.getItem('activityId'),
       mapActivity: null,
       polyline: null,
       start_latitude: null,
@@ -51,17 +51,17 @@ export default class MapView extends Component {
       method: 'GET',
       body: null,
       headers: {
-        'Authorization': 'Bearer ' + '37338812d9b76451f38f8c296616f94149881d15'
+        'Authorization': 'Bearer ' + this.state.access_token
       }
     }
-    let result = await fetch(requestUrl + 'activities/' + '1252340841' + '?include_all_efforts=false', options).then((data) => data.json()).then((responseData) => {
+    let result = await fetch(requestUrl + 'activities/' + this.state.activityId + '?include_all_efforts=false', options).then((data) => data.json()).then((responseData) => {
       let points = Polyline.decode(responseData.map.summary_polyline)
       let coordinates = points.map((point, index) => {
         return [point[1], point[0]]
       })
       this.setState({coordinates: coordinates})
       const map = new mapboxgl.Map({container: this.mapContainer, style: 'mapbox://styles/ellendown/cj9n4vi9s360x2rlp0y18otvl', zoom: 0});
-      map.jumpTo({'center': this.state.coordinates[0], 'zoom': 22});
+      map.jumpTo({'center': this.state.coordinates[0], 'zoom': 18});
       map.setPitch(100);
       // this.panToRoute()
       //
@@ -69,13 +69,12 @@ export default class MapView extends Component {
       let timer = window.setInterval(function() {
         if (i < coordinates.length) {
           coordinates.push(coordinates[i]);
-          // map.getSource('trace').setData(coord);
           map.panTo(coordinates[i]);
           i++;
         } else {
           window.clearInterval(timer);
         }
-      }, 1500);
+      }, 1000);
     })
   }
 
@@ -85,7 +84,7 @@ export default class MapView extends Component {
 
     return (
       <div>
-        <div ref={el => this.mapContainer = el} className="absolute top right left bottom" style={mapStyle}/>
+        <div ref={el => this.mapContainer = el} style={mapStyle}/>
       </div>
     );
   }
