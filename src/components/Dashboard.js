@@ -49,9 +49,16 @@ export default class AthleteDashboard extends Component {
   }
 
   async saveActivityId(id, value) {
-    console.log('are we getting here');
     try {
       await localStorage.setItem(id, value);
+    } catch (error) {
+      console.error('localStorage error: ' + error.message);
+    }
+  }
+
+  async saveIdentityStatus(status, value) {
+    try {
+      await localStorage.setItem(status, value);
     } catch (error) {
       console.error('localStorage error: ' + error.message);
     }
@@ -86,6 +93,7 @@ export default class AthleteDashboard extends Component {
         'Authorization': 'Bearer ' + this.state.access_token
       }
     }
+
     return fetch(requestUrl + 'athlete/activities?page=1', options).then((data) => data.json()).then((responseData) => {
       let list = responseData.map(activity => {
         return {
@@ -112,32 +120,41 @@ export default class AthleteDashboard extends Component {
       }
     }
     return fetch(requestUrl + 'activities/following', options).then((data) => data.json()).then((responseData) => {
-      let listFollowers = responseData.map(followerActvitity => {
-        return {
-          id: followerActvitity.id,
-          athleteName1: followerActvitity.athlete.firstname,
-          athleteName2: followerActvitity.athlete.lastname,
-          photo: followerActvitity.athlete.profile,
-          name: followerActvitity.name,
-          distance: followerActvitity.distance,
-          type: followerActvitity.type,
-          start_date: followerActvitity.start_date,
-          polyline: followerActvitity.map.summary_polyline
-        }
-      })
-      this.setState({followerActivities: listFollowers})
-    }).catch((error) => {
+      console.log(responseData);
+        let listFollowers = responseData.map(followerActivity => {
+          return {
+            id: followerActivity.id,
+            athleteName1: followerActivity.athlete.firstname,
+            athleteName2: followerActivity.athlete.lastname,
+            photo: followerActivity.athlete.profile,
+            name: followerActivity.name,
+            distance: followerActivity.distance,
+            type: followerActivity.type,
+            polyline: followerActivity.map.summary_polyline,
+            start_date: followerActivity.start_date
+          }
+        })
+        let filteredFollowers = listFollowers.filter(filteredFollower => {
+          return filteredFollower.polyline !== null
+        })
+        console.log(filteredFollowers);
+        this.setState({followerActivities: filteredFollowers})
+
+      }).catch((error) => {
       console.error(error);
     });
   }
 
-
   _toMapView(id, e) {
     this.saveActivityId('activityId', id)
-    console.log(id);
-  //   // let stringId = JSON.stringify(id)
-  //   // this.setState({selectedActvity: id})
-  //   // this.saveActivityId('activityId', stringId)
+    this.saveIdentityStatus('isSelf', true)
+    this.props.history.push('/mapview')
+  }
+
+
+  _toMapFollowView(id, e) {
+    this.saveActivityId('activityId', id)
+    this.saveIdentityStatus('isSelf', false)
     this.props.history.push('/mapview')
   }
 
@@ -236,7 +253,7 @@ export default class AthleteDashboard extends Component {
               <div className='follow-feed'>
                 {this.state.followerActivities.map(followerActivity => {
                   return (
-                    <Feed className="activity-feed" onClick={(e) => this._toMapView(followerActivity.id)}>
+                    <Feed className="activity-feed" onClick={(e) => this._toMapFollowView(followerActivity.id)}>
                       <Feed.Event key={followerActivity.id}>
                         <div>
                           <Image className='followerPhoto' src={followerActivity.photo}/>

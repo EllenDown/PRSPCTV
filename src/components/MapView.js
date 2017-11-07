@@ -27,23 +27,15 @@ export default class MapView extends Component {
       activityId: localStorage.getItem('activityId'),
       mapActivity: null,
       polyline: null,
-      start_latitude: null,
-      start_longitude: null,
+      isSelf: localStorage.getItem('isSelf'),
       coordinates: null
     }
   }
 
   componentDidMount() {
     const map = new mapboxgl.Map({container: this.mapContainer, style: 'mapbox://styles/ellendown/cj9kd47io0l442rlp7z6n8oz3', zoom: 0});
-    // AsyncStorage.getItem('access_token').then((token) => {
-    //   this.setState({access_token: token})
-    // });
-    // localStorage.getItem('activityId').then((id) => {
-    //   let realId = parseInt(id)
-    //   this.setState({activityId: realId})
-    // this._getMapInfo().done()
     this._getMapInfo()
-    // this.getPolyLine()
+    console.log('get map');
   }
 
   _getMapInfo = async() => {
@@ -55,37 +47,87 @@ export default class MapView extends Component {
       }
     }
     let result = await fetch(requestUrl + 'activities/' + this.state.activityId + '?include_all_efforts=false', options).then((data) => data.json()).then((responseData) => {
-      let points = Polyline.decode(responseData.map.summary_polyline)
+      let points
+      if (this.state.isSelf === true) {
+        points = Polyline.decode(responseData.map.polyline)
+    } else {
+        points = Polyline.decode(responseData.map.summary_polyline)
+      }
+      console.log(points);
       let coordinates = points.map((point, index) => {
         return [point[1], point[0]]
       })
       this.setState({coordinates: coordinates})
       const map = new mapboxgl.Map({container: this.mapContainer, style: 'mapbox://styles/ellendown/cj9n4vi9s360x2rlp0y18otvl', zoom: 0});
-      map.jumpTo({'center': this.state.coordinates[0], 'zoom': 18});
-      map.setPitch(100);
-      // this.panToRoute()
-      //
-      let i = 0;
-      let timer = window.setInterval(function() {
-        if (i < coordinates.length) {
-          coordinates.push(coordinates[i]);
-          map.panTo(coordinates[i]);
-          i++;
-        } else {
-          window.clearInterval(timer);
+      map.on('load', function () {
+        let data = {
+          'type': 'FeatureCollection',
+          'features':
+            [{
+              'type': 'Feature',
+              'properties': {},
+              'geometry': {
+                'type': 'LineString',
+                'coordinates': coordinates
+              }
+            }]
         }
-      }, 1000);
+
+        // save full coordinate list for later
+        // var coordinates = data.features[0].geometry.coordinates;
+
+        // start by showing just the first coordinate
+        // data.features[0].geometry.coordinates = [coordinates[0]];
+
+        map.addSource('trace', { type: 'geojson', data: data });
+        map.addLayer({
+            "id": "trace",
+            "type": "line",
+            "source": "trace",
+            "paint": {
+                "line-color": "yellow",
+                "line-opacity": 0.75,
+                "line-width": 2
+            }
+        });
+
+        map.jumpTo({'center': coordinates[0], 'zoom': 20});
+        map.setPitch(180);
+        let i = 0;
+        let timer = window.setInterval(function() {
+          if (i < coordinates.length) {
+            data.features[0].geometry.coordinates.push(coordinates[i]);
+            map.panTo(coordinates[i]);
+            i++;
+          } else {
+            window.clearInterval(timer);
+          }
+        }, 500);
+      })
     })
   }
 
-  render() {
+    render() {
+      const coordinates = this.state.coordinates
 
-    const coordinates = this.state.coordinates
+      const data = {
+        'type': 'FeatureCollection',
+        'features':
+          [{
+            'type': 'Feature',
+            'properties': {},
+            'geometry': {
+              'type': 'LineString',
+              'coordinates': coordinates
+            }
+          }]
+      }
 
-    return (
-      <div>
-        <div ref={el => this.mapContainer = el} style={mapStyle}/>
-      </div>
-    );
+
+      return (
+        <div>
+          <div ref={el => this.mapContainer = el} style={mapStyle}/>
+        </div>
+      );
+    }
   }
-}
