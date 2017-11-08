@@ -11,10 +11,9 @@ import mapboxgl from 'mapbox-gl'
 import './styles/Login.css'
 import shittyQs from 'shitty-qs';
 
-import PrspctvLogo from '../assets/PrspctvLogo.png'
 import pLogoBlue from '../assets/pLogoBlue.png'
 import LogoBlueWhite from '../assets/LogoBlueWhite.png'
-
+import butterflyBlue from '../assets/butterflyBlue.png'
 
 const clientId = "20906"
 const redirectUrl = "http://localhost:3000/afterauth"
@@ -39,7 +38,7 @@ export default class Login extends Component {
       <div className="bodyLogin">
         <div className='topLogin'>
         <div className='logoContainer'>
-          <Image className='logo' src={LogoBlueWhite}/>
+            <Image className='logo' src={LogoBlueWhite}/>
         </div>
         <div className='quoteText'>
           Instead of trying to make your life perfect, give yourself the freedom to make it an adventure, and go ever upward.

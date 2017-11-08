@@ -4,6 +4,7 @@
   padding: 0;
   height: 110vh;
   font-family: 'Poiret One', cursive;
+  letter-spacing: .1rem;
 }
 
 .topLogin {
@@ -19,13 +20,17 @@
 }
 
 .logoContainer {
-  width: 50%;
+  margin: 2rem;
+  padding: 1rem;
+  width: 30%;
   margin: auto;
+  vertical-align: middle;
 }
 
 .logo {
-  margin-left: 50px;
-  height: 350px;
+  position: relative;
+  /*margin-left: 50px;*/
+  height: 300px;
   padding: 30px;
 }
 

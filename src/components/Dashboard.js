@@ -215,7 +215,7 @@ export default class AthleteDashboard extends Component {
         </div>
         <Grid>
           <Grid.Row>
-            <Grid.Column width={3} className="column1">
+            <Grid.Column width={4} className="column1">
               <div className='userContainer'>
               <div className='dash-header'>
                 <div className='image-container'>
@@ -253,7 +253,7 @@ export default class AthleteDashboard extends Component {
               </div>
             </div>
             </Grid.Column>
-            <Grid.Column width={10}>
+            <Grid.Column width={9}>
               <div className='followerGridHeader'> Explore Your Friends' Adventures!</div>
 
             <Grid className='followerFeed'>
