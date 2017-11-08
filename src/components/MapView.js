@@ -11,6 +11,8 @@ const requestUrl = "https://www.strava.com/api/v3/"
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZWxsZW5kb3duIiwiYSI6ImNqOWV4b2h5dDJncTQycXJ3MGtqN3F2Z2QifQ.mMMY_S1H4Rp1CdbWH0p0rQ';
 
+const mapStyles = ['mapbox://styles/ellendown/cj9nn4vj83hop2rnz2tbug6nl', 'mapbox://styles/ellendown/cj9n4vi9s360x2rlp0y18otvl', 'mapbox://styles/ellendown/cj9qduedf03242spha37msoya']
+
 const mapStyle = {
   position: 'absolute',
   top: 0,
@@ -34,8 +36,13 @@ export default class MapView extends Component {
 
   componentDidMount() {
     const map = new mapboxgl.Map({container: this.mapContainer, style: 'mapbox://styles/ellendown/cj9nn4vj83hop2rnz2tbug6nl', zoom: 0});
+    this._getRandomMapStyle()
     this._getMapInfo()
-    console.log('get map');
+  }
+
+  _getRandomMapStyle() {
+    var randomMap = mapStyles[Math.floor(Math.random() * mapStyles.length)];
+    this.setState({randomMap: randomMap})
   }
 
   _getMapInfo = async() => {
@@ -53,12 +60,13 @@ export default class MapView extends Component {
     } else {
         points = Polyline.decode(responseData.map.summary_polyline)
       }
-      console.log(points);
       let coordinates = points.map((point, index) => {
         return [point[1], point[0]]
       })
       this.setState({coordinates: coordinates})
-      const map = new mapboxgl.Map({container: this.mapContainer, style: 'mapbox://styles/ellendown/cj9n4vi9s360x2rlp0y18otvl', zoom: 0});
+      console.log(this.state.randomMap);
+      var randomMap = mapStyles[Math.floor(Math.random() * mapStyles.length)];
+      const map = new mapboxgl.Map({container: this.mapContainer, style: randomMap, zoom: 0});
       map.on('load', function () {
         let data = {
           'type': 'FeatureCollection',
@@ -87,7 +95,7 @@ export default class MapView extends Component {
             "paint": {
                 "line-color": "yellow",
                 "line-opacity": 0.75,
-                "line-width": 2
+                "line-width": 4
             }
         });
 
@@ -108,6 +116,7 @@ export default class MapView extends Component {
   }
 
     render() {
+      const randomMap = this.state.randomMap
       const coordinates = this.state.coordinates
 
       const data = {

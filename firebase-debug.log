@@ -1,0 +1,29 @@
+[debug] [2017-11-08T01:44:14.482Z] ----------------------------------------------------------------------
+[debug] [2017-11-08T01:44:14.484Z] Command:      /usr/local/Cellar/node/8.7.0/bin/node /usr/local/bin/firebase deploy
+[debug] [2017-11-08T01:44:14.484Z] CLI Version:  3.9.1
+[debug] [2017-11-08T01:44:14.484Z] Platform:     darwin
+[debug] [2017-11-08T01:44:14.484Z] Node Version: v8.7.0
+[debug] [2017-11-08T01:44:14.485Z] Time:         Tue Nov 07 2017 18:44:14 GMT-0700 (MST)
+[debug] [2017-11-08T01:44:14.485Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-11-08T01:44:14.497Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-11-08T01:44:14.497Z] > authorizing via signed-in user
+[debug] [2017-11-08T01:44:14.499Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-11-08T01:44:14.499Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/tEg3UGTu4u9u_W1IyVNZ1M2P4PzvuND0Xd_EHqHwKpqgo9OFuvAucFiJE3WnmEyI',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Tue Nov 07 2017 18:44:14 GMT-0700 (MST)
+[debug] [2017-11-08T01:44:14.755Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-08T01:44:14.766Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/prspctv-1508732770742  
+ Tue Nov 07 2017 18:44:14 GMT-0700 (MST)
+[debug] [2017-11-08T01:44:15.065Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-08T01:44:15.067Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/prspctv-1508732770742/tokens  
+ Tue Nov 07 2017 18:44:15 GMT-0700 (MST)
+[debug] [2017-11-08T01:44:16.042Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'prspctv-1508732770742'...
+[info] 
+[info] i  deploying hosting
+[info] i  hosting: preparing ./ directory for upload...
