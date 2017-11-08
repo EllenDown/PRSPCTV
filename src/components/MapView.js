@@ -11,7 +11,7 @@ const requestUrl = "https://www.strava.com/api/v3/"
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZWxsZW5kb3duIiwiYSI6ImNqOWV4b2h5dDJncTQycXJ3MGtqN3F2Z2QifQ.mMMY_S1H4Rp1CdbWH0p0rQ';
 
-const mapStyles = ['mapbox://styles/ellendown/cj9nn4vj83hop2rnz2tbug6nl', 'mapbox://styles/ellendown/cj9qduedf03242spha37msoya', 'mapbox://styles/ellendown/cj9n4bmua34uw2rrrf6grfm0u', 'mapbox://styles/ellendown/cj9gc0eqm89dm2sprtpxswzg3', 'mapbox://styles/ellendown/cj9gc0eqm89dm2sprtpxswzg3', 'mapbox://styles/ellendown/cj9gc0eqm89dm2sprtpxswzg3']
+const mapStyles = ['mapbox://styles/ellendown/cj9nn4vj83hop2rnz2tbug6nl', 'mapbox://styles/ellendown/cj9qj2by107v92sph2k5hrwdf', 'mapbox://styles/ellendown/cj9n4vi9s360x2rlp0y18otvl', 'mapbox://styles/ellendown/cj9n4bmua34uw2rrrf6grfm0u', 'mapbox://styles/ellendown/cj9qduedf03242spha37msoya', 'mapbox://styles/ellendown/cj9nn4vj83hop2rnz2tbug6nl', 'mapbox://styles/ellendown/cj9gc0eqm89dm2sprtpxswzg3']
 
 const mapStyle = {
   position: 'absolute',
@@ -36,13 +36,7 @@ export default class MapView extends Component {
 
   componentDidMount() {
     const map = new mapboxgl.Map({container: this.mapContainer, style: 'mapbox://styles/ellendown/cj9nn4vj83hop2rnz2tbug6nl', zoom: 0});
-    this._getRandomMapStyle()
     this._getMapInfo()
-  }
-
-  _getRandomMapStyle() {
-    var randomMap = mapStyles[Math.floor(Math.random() * mapStyles.length)];
-    this.setState({randomMap: randomMap})
   }
 
   _getMapInfo = async() => {
@@ -64,8 +58,8 @@ export default class MapView extends Component {
         return [point[1], point[0]]
       })
       this.setState({coordinates: coordinates})
-      console.log(this.state.randomMap);
       var randomMap = mapStyles[Math.floor(Math.random() * mapStyles.length)];
+      console.log(randomMap);
       const map = new mapboxgl.Map({container: this.mapContainer, style: randomMap, zoom: 0});
       map.on('load', function () {
         let data = {
@@ -91,14 +85,14 @@ export default class MapView extends Component {
             "type": "line",
             "source": "trace",
             "paint": {
-                "line-color": "yellow",
+                "line-color": "red",
                 "line-opacity": 0.75,
                 "line-width": 4
             }
         });
 
-        map.jumpTo({'center': coordinates2[0], 'zoom': 16});
-        map.setPitch(180);
+        map.jumpTo({'center': coordinates2[0], 'zoom': 14});
+        map.setPitch(500);
         let i = 0;
         let timer = window.setInterval(function() {
           if (i < coordinates2.length) {
@@ -109,7 +103,7 @@ export default class MapView extends Component {
           } else {
             window.clearInterval(timer);
           }
-        }, 1000);
+        }, 500);
       })
     })
   }
