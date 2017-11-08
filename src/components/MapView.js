@@ -11,7 +11,7 @@ const requestUrl = "https://www.strava.com/api/v3/"
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZWxsZW5kb3duIiwiYSI6ImNqOWV4b2h5dDJncTQycXJ3MGtqN3F2Z2QifQ.mMMY_S1H4Rp1CdbWH0p0rQ';
 
-const mapStyles = ['mapbox://styles/ellendown/cj9nn4vj83hop2rnz2tbug6nl', 'mapbox://styles/ellendown/cj9n4vi9s360x2rlp0y18otvl', 'mapbox://styles/ellendown/cj9qduedf03242spha37msoya']
+const mapStyles = ['mapbox://styles/ellendown/cj9nn4vj83hop2rnz2tbug6nl', 'mapbox://styles/ellendown/cj9n4vi9s360x2rlp0y18otvl', 'mapbox://styles/ellendown/cj9qduedf03242spha37msoya', 'mapbox://styles/ellendown/cj9n4bmua34uw2rrrf6grfm0u', 'mapbox://styles/ellendown/cj9gc0eqm89dm2sprtpxswzg3', 'mapbox://styles/ellendown/cj9gc0eqm89dm2sprtpxswzg3', 'mapbox://styles/ellendown/cj9gc0eqm89dm2sprtpxswzg3']
 
 const mapStyle = {
   position: 'absolute',

@@ -5,6 +5,12 @@ import StackGrid from "react-stack-grid";
 import './styles/Dashboard.css'
 
 import butterflyBlue from '../assets/butterflyBlue.png'
+import blue from '../assets/blue.png'
+import cartogram from '../assets/cartogram.png'
+import cartoon from '../assets/cartoon.png'
+import decimal from '../assets/decimal.png'
+import warmSat from '../assets/warmSat.png'
+import purple from '../assets/purple.png'
 
 const clientId = "20906"
 const clientSecret = "a54ffe91af74c2e3fefcd3fe794159a1c120f136"
@@ -253,7 +259,7 @@ export default class AthleteDashboard extends Component {
             <Grid className='followerFeed'>
               {this.state.followerActivities.map(followerActivity => {
                 return (
-                  <Grid.Column className='follower' key={followerActivity.id} width={5} onClick={(e) => this._toMapFollowView(followerActivity.id)}>
+                  <Grid.Column className='follower' key={followerActivity.id} width={4} onClick={(e) => this._toMapFollowView(followerActivity.id)}>
                     <div className='followerPhotoContainer'>
                       <Image className='followerPhoto' src={followerActivity.photo}/>
                     </div>
@@ -278,6 +284,15 @@ export default class AthleteDashboard extends Component {
               })
             }
             </Grid>
+          </Grid.Column>
+          <Grid.Column width={3}>
+            <div className='mapPhotoContainer'>
+            <Image className='mapPhoto' src={blue}/>
+            <Image className='mapPhoto' src={purple}/>
+            <Image className='mapPhoto' src={decimal}/>
+            <Image className='mapPhoto' src={warmSat}/>
+            <Image className='mapPhoto' src={cartoon}/>
+          </div>
           </Grid.Column>
           </Grid.Row>
         </Grid>
