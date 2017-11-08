@@ -5,21 +5,16 @@ import StackGrid from "react-stack-grid";
 import './styles/Dashboard.css'
 
 import butterflyBlue from '../assets/butterflyBlue.png'
-import apex1 from '../assets/apex1.png'
-import apex2 from '../assets/apex2.png'
-import apex3 from '../assets/apex3.png'
-import apex4 from '../assets/apex4.png'
-import apex5 from '../assets/apex5.png'
-import apex6 from '../assets/apex6.png'
-import apex7 from '../assets/apex7.png'
-import apex8 from '../assets/apex8.png'
-import mapBGImg from '../assets/mapBGImg.png'
 
 const clientId = "20906"
 const clientSecret = "a54ffe91af74c2e3fefcd3fe794159a1c120f136"
 const accessToken = '37338812d9b76451f38f8c296616f94149881d15'
 const baseUrl = "https://www.strava.com/oauth/token"
 const requestUrl = "https://www.strava.com/api/v3/"
+
+const dateStyle = {
+  color: 'rgba(255, 255, 255, 0.5)'
+}
 
 export default class AthleteDashboard extends Component {
   constructor(props) {
@@ -102,7 +97,7 @@ export default class AthleteDashboard extends Component {
           distance: activity.distance,
           type: activity.type,
           start_date: activity.start_date,
-          polyline: activity.map.summary_polyline,
+          polyline: activity.map.summary_polyline
         }
       })
       this.setState({activities: list})
@@ -121,26 +116,26 @@ export default class AthleteDashboard extends Component {
     }
     return fetch(requestUrl + 'activities/following', options).then((data) => data.json()).then((responseData) => {
       console.log(responseData);
-        let listFollowers = responseData.map(followerActivity => {
-          return {
-            id: followerActivity.id,
-            athleteName1: followerActivity.athlete.firstname,
-            athleteName2: followerActivity.athlete.lastname,
-            photo: followerActivity.athlete.profile,
-            name: followerActivity.name,
-            distance: followerActivity.distance,
-            type: followerActivity.type,
-            polyline: followerActivity.map.summary_polyline,
-            start_date: followerActivity.start_date
-          }
-        })
-        let filteredFollowers = listFollowers.filter(filteredFollower => {
-          return filteredFollower.polyline !== null
-        })
-        console.log(filteredFollowers);
-        this.setState({followerActivities: filteredFollowers})
+      let listFollowers = responseData.map(followerActivity => {
+        return {
+          id: followerActivity.id,
+          athleteName1: followerActivity.athlete.firstname,
+          athleteName2: followerActivity.athlete.lastname,
+          photo: followerActivity.athlete.profile,
+          name: followerActivity.name,
+          distance: followerActivity.distance,
+          type: followerActivity.type,
+          polyline: followerActivity.map.summary_polyline,
+          start_date: followerActivity.start_date
+        }
+      })
+      let filteredFollowers = listFollowers.filter(filteredFollower => {
+        return filteredFollower.polyline !== null
+      })
+      console.log(filteredFollowers);
+      this.setState({followerActivities: filteredFollowers})
 
-      }).catch((error) => {
+    }).catch((error) => {
       console.error(error);
     });
   }
@@ -150,7 +145,6 @@ export default class AthleteDashboard extends Component {
     this.saveIdentityStatus('isSelf', true)
     this.props.history.push('/mapview')
   }
-
 
   _toMapFollowView(id, e) {
     this.saveActivityId('activityId', id)
@@ -171,8 +165,8 @@ export default class AthleteDashboard extends Component {
       var meterToMile = distance * 0.000621371
       var miles = meterToMile.toFixed(2)
       return miles + " miles"
+    }
   }
-}
 
   renderDate = (date) => {
     let dayDate = date.slice(0, 10).split(/\D/);
@@ -214,8 +208,9 @@ export default class AthleteDashboard extends Component {
           </div>
         </div>
         <Grid>
-          <Grid.Row columns={3}>
+          <Grid.Row>
             <Grid.Column width={3} className="column1">
+              <div className='userContainer'>
               <div className='dash-header'>
                 <div className='image-container'>
                   <img className='dash-image' src={this.state.athletePhoto}/>
@@ -234,9 +229,14 @@ export default class AthleteDashboard extends Component {
                           <i class="material-icons md-36">{this.renderIcon(activity.type)}</i>
                         </Feed.Label>
                         <Feed.Content>
-                          <Feed.Date>{this.renderDate(activity.start_date)}</Feed.Date>
+                          <Feed.Date style={dateStyle}>{this.renderDate(activity.start_date)}</Feed.Date>
                           <Feed.Summary>
-                            {activity.name}
+                            <div className='activityName'>
+                              {activity.name}
+                            </div>
+                            <div className='activityDistance'>
+                              {this.renderDistance(activity.distance)}
+                            </div>
                           </Feed.Summary>
                         </Feed.Content>
                       </Feed.Event>
@@ -245,40 +245,40 @@ export default class AthleteDashboard extends Component {
                 })
               }
               </div>
+            </div>
             </Grid.Column>
-            <Grid.Column width={9}>
-              <img className='footerImage' src={mapBGImg}/>
-            </Grid.Column>
-            <Grid.Column width={3} className="column2">
-              <div className='follow-feed'>
-                {this.state.followerActivities.map(followerActivity => {
-                  return (
-                    <Feed className="activity-feed" onClick={(e) => this._toMapFollowView(followerActivity.id)}>
-                      <Feed.Event key={followerActivity.id}>
-                        <div>
-                          <Image className='followerPhoto' src={followerActivity.photo}/>
+            <Grid.Column width={10}>
+              <div className='followerGridHeader'> Explore Your Friends' Adventures!</div>
+
+            <Grid className='followerFeed'>
+              {this.state.followerActivities.map(followerActivity => {
+                return (
+                  <Grid.Column className='follower' key={followerActivity.id} width={5} onClick={(e) => this._toMapFollowView(followerActivity.id)}>
+                    <div className='followerPhotoContainer'>
+                      <Image className='followerPhoto' src={followerActivity.photo}/>
+                    </div>
+                    <div className='followerInfoContainer'>
+                      <div className='followerInfo'>
+                        <div className='followerName'><i class="material-icons md-36">{this.renderIcon(followerActivity.type)}</i>
+                          {followerActivity.athleteName1} {followerActivity.athleteName2}
                         </div>
-                        <Feed.Label>
-                          <i class="material-icons md-36">{this.renderIcon(followerActivity.type)}</i>
-                        </Feed.Label>
-                        <Feed.Content>
-                          <Feed.Date>{this.renderDate(followerActivity.start_date)}</Feed.Date>
-                          <Feed.Summary>
-                            <div>
-                              {followerActivity.name}
-                            </div>
-                            <div>
-                              {this.renderDistance(followerActivity.distance)}
-                            </div>
-                          </Feed.Summary>
-                        </Feed.Content>
-                      </Feed.Event>
-                    </Feed>
-                  )
-                })
-              }
-              </div>
-            </Grid.Column>
+                        <div className='followerDate'>
+                          {this.renderDate(followerActivity.start_date)}
+                        </div>
+                        <div className='followActivityName'>
+                          {followerActivity.name}
+                        </div>
+                        <div className='followDistance'>
+                          {this.renderDistance(followerActivity.distance)}
+                        </div>
+                      </div>
+                    </div>
+                  </Grid.Column>
+                )
+              })
+            }
+            </Grid>
+          </Grid.Column>
           </Grid.Row>
         </Grid>
       </div>

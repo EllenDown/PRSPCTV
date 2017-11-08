@@ -3,6 +3,7 @@
   margin-left: 50px;
   padding: 0;
   height: 110vh;
+  font-family: 'Poiret One', cursive;
 }
 
 .topLogin {
@@ -34,6 +35,7 @@
   text-align: justify right;
   line-height: 3rem;
   color: white;
+  font-weight: bolder;
 }
 
 .aboutText {

@@ -25,7 +25,6 @@ export default class Login extends Component {
     }
   }
 
-
   render() {
     const {active} = this.state
 

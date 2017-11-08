@@ -33,7 +33,7 @@ export default class MapView extends Component {
   }
 
   componentDidMount() {
-    const map = new mapboxgl.Map({container: this.mapContainer, style: 'mapbox://styles/ellendown/cj9kd47io0l442rlp7z6n8oz3', zoom: 0});
+    const map = new mapboxgl.Map({container: this.mapContainer, style: 'mapbox://styles/ellendown/cj9nn4vj83hop2rnz2tbug6nl', zoom: 0});
     this._getMapInfo()
     console.log('get map');
   }
@@ -91,7 +91,7 @@ export default class MapView extends Component {
             }
         });
 
-        map.jumpTo({'center': coordinates[0], 'zoom': 20});
+        map.jumpTo({'center': coordinates[0], 'zoom': 16});
         map.setPitch(180);
         let i = 0;
         let timer = window.setInterval(function() {
@@ -102,7 +102,7 @@ export default class MapView extends Component {
           } else {
             window.clearInterval(timer);
           }
-        }, 500);
+        }, 1000);
       })
     })
   }

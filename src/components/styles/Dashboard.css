@@ -2,12 +2,12 @@
   background-color: white;
   height: 100vh;
   display: block;
+  font-family: 'Poiret One', cursive;
 }
 
 .headerContainer {
   width: 100%;
-  border-bottom: solid black;
-  /*margin-bottom: 20px;*/
+  background-color: black;
 }
 
 .logoImage {
@@ -22,66 +22,86 @@
 }
 
 .column1 {
-  margin-left: 30px;
-  /*border-right: thick solid black;*/
-  padding: 10px;
+  border-right: solid black;
+  color: white;
+  background-color: black;
+}
+
+.userContainer {
+  margin-left: 10px;
+  /*margin-right: 10px;*/
+}
+
+.activityName {
+  color: white;
+}
+
+.activityDistance {
+  color: white;
 }
 
 .image-container {
-  vertical-align: middle;
   width: 100%;
-  padding: .5rem;
   margin: auto;
 }
 
 .dash-image {
-  height: 200px;
-  border-radius: 5%;
+  height: 300px;
+  width: 300px;
 }
 
 .name-container {
-  /*width: 70%;*/
   margin-bottom: 20px;
 }
-
-.followerPhoto {
-  height: 100px;
-  width: 100px;
-  border-radius: 5%;
-  margin-right: 10px;
-}
-
 .dash-name {
   font-size: 1.8rem;
   text-align: left;
   padding-top: 1rem;
   text-transform: uppercase;
   letter-spacing: .5rem;
-
 }
 
-.activity-feed {
-  text-align: center;
-  padding-top: 1rem;
+div.ui.grid.followerFeed {
+  margin-top: 1rem;
+  margin-left: .5rem;
 }
 
-.gridImage {
+.followerGridHeader {
+  font-size: 2rem;
+  margin: 1rem;
+  text-transform: uppercase;
+  letter-spacing: .5rem;
+}
+
+.followerPhoto {
   height: 200px;
-  width: 300px;
+  width: 200px;
+  margin-bottom: 10px;
 }
 
-.gridImage1 {
-  height: 300px;
-  width: 300px;
+div.five.wide.column.follower {
+  padding-left: .4rem;
+  padding-right: .4rem;
 }
 
-.column2 i {
-  margin-top: 40px;
-  margin-left: 10px;
+.followerName {
+  font-size: 1.2rem;
+  font-weight: bolder;
+  margin-bottom: 8px;
+  font-family: 'Dosis', sans-serif;
 }
 
-.footerImage {
-  height: 600px;
-  width: 100%;
-  margin-top: 20px;
+.followerDate {
+  color: rgba(0,0,0,0.4);
+  font-family: 'Dosis', sans-serif;
+}
+
+.followActivityName {
+  font-weight: bolder;
+  font-family: 'Dosis', sans-serif;
+}
+
+.followDistance {
+  font-weight: bolder;
+  font-family: 'Dosis', sans-serif;
 }
