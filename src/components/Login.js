@@ -16,7 +16,7 @@ import LogoBlueWhite from '../assets/LogoBlueWhite.png'
 import butterflyBlue from '../assets/butterflyBlue.png'
 
 const clientId = "20906"
-const redirectUrl = "http://localhost:3000/afterauth"
+const redirectUrl = "https://prspctv-1508732770742.firebaseapp.com/afterauth"
 
 export default class Login extends Component {
   constructor() {

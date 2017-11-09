@@ -14,7 +14,6 @@ import purple from '../assets/purple.png'
 
 const clientId = "20906"
 const clientSecret = "a54ffe91af74c2e3fefcd3fe794159a1c120f136"
-const accessToken = '37338812d9b76451f38f8c296616f94149881d15'
 const baseUrl = "https://www.strava.com/oauth/token"
 const requestUrl = "https://www.strava.com/api/v3/"
 

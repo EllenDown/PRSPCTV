@@ -3,7 +3,7 @@ import {Button, Container, Header} from 'semantic-ui-react'
 import shittyQs from 'shitty-qs';
 
 const clientId = "20906"
-const redirectUrl = "https://localhost:3000/"
+// const redirectUrl = "https://localhost:3000/"
 
 export default class AfterAuth extends Component {
   constructor(props) {
