@@ -102,8 +102,9 @@ export default class MapView extends Component {
             i++;
           } else {
             window.clearInterval(timer);
+            // this.props.history.push('/dashboard')
           }
-        }, 500);
+        }, 800);
       })
     })
   }
@@ -111,19 +112,6 @@ export default class MapView extends Component {
     render() {
       const randomMap = this.state.randomMap
       const coordinates = this.state.coordinates
-
-      // const data = {
-      //   'type': 'FeatureCollection',
-      //   'features':
-      //     [{
-      //       'type': 'Feature',
-      //       'properties': {},
-      //       'geometry': {
-      //         'type': 'LineString',
-      //         'coordinates': this.state.coordinates
-      //       }
-      //     }]
-      // }
 
       return (
         <div>
