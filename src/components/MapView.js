@@ -91,7 +91,7 @@ export default class MapView extends Component {
             }
         });
 
-        map.jumpTo({'center': coordinates2[0], 'zoom': 16});
+        map.jumpTo({'center': coordinates2[0], 'zoom': 14});
         map.setPitch(500);
         let i = 0;
         let timer = window.setInterval(function() {
@@ -99,14 +99,14 @@ export default class MapView extends Component {
             data.features[0].geometry.coordinates.push(coordinates2[i]);
             map.getSource('trace').setData(data);
             map.panTo(coordinates2[i]);
-            i++;
+            i++
           } else {
             window.clearInterval(timer);
-            // this.props.history.push('/dashboard')
           }
         }, 800);
       })
     })
+    this.props.history.push('/dashboard')
   }
 
     render() {

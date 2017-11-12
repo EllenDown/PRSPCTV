@@ -102,10 +102,13 @@ export default class AthleteDashboard extends Component {
           distance: activity.distance,
           type: activity.type,
           start_date: activity.start_date,
-          polyline: activity.map.summary_polyline
+          polyline: activity.map.polyline
         }
       })
-      this.setState({activities: list})
+      let filteredActivities = list.filter(filteredActivity => {
+        return filteredActivity.polyline !== null
+      })
+      this.setState({activities: filteredActivities})
     }).catch((error) => {
       console.error(error);
     });
