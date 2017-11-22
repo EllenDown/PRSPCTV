@@ -36,6 +36,7 @@ export default class AthleteDashboard extends Component {
   }
 
   componentDidMount() {
+    console.log(this.state.code);
     this._getAthleteInfo()
     this._getFollowerInfo()
   }
@@ -123,7 +124,6 @@ export default class AthleteDashboard extends Component {
       }
     }
     return fetch(requestUrl + 'activities/following', options).then((data) => data.json()).then((responseData) => {
-      console.log(responseData);
       let listFollowers = responseData.map(followerActivity => {
         return {
           id: followerActivity.id,
@@ -140,9 +140,7 @@ export default class AthleteDashboard extends Component {
       let filteredFollowers = listFollowers.filter(filteredFollower => {
         return filteredFollower.polyline !== null
       })
-      console.log(filteredFollowers);
       this.setState({followerActivities: filteredFollowers})
-
     }).catch((error) => {
       console.error(error);
     });

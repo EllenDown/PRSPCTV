@@ -106,7 +106,6 @@ export default class MapView extends Component {
         }, 800);
       })
     })
-    this.props.history.push('/dashboard')
   }
 
     render() {

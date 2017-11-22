@@ -35,6 +35,7 @@ export default class Login extends Component {
       window.location = `https://www.strava.com/oauth/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirectUrl}`;
     }
 
+// add onClick= { onConnect back to button }
     return (
       <div className="bodyLogin">
         <div className='topLogin'>
@@ -47,7 +48,10 @@ export default class Login extends Component {
         </div>
         <div className='bottomLogin'>
           <div className='loginContainer'>
-            <Button inverted color='blue' size='massive' onClick={onConnect}>Login</Button>
+            <Button inverted color='blue' size='massive' >UNDER CONSTRUCTION</Button>
+          </div>
+          <div className='aboutText'>
+            COME BACK AND VISIT SOON
           </div>
           <div className='aboutText'>
             To explore your adventures with an enhanced PRSPCTV login here with your STRAVA account
